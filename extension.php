@@ -42,9 +42,6 @@ function slugGenerator($args) {
 
 function slugGenURL($args) {
     global $db;
-    echo "<script type='text/javascript'>console.log('";
-    echo $args[1];
-    echo "');</script>";
     $url = $args[1];
     $url = rtrim($url, "/");
     $args[0] = rtrim($args[0], "/");
