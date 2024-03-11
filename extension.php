@@ -48,7 +48,7 @@ function slugGenURL($args) {
     $url_parts = explode('/', parse_url($url, PHP_URL_PATH));
     
     
-    if ($url_parts[0] == "user") {
+    if ($url_parts[0] == "user" && isset($url_parts[1])) {
         if (!isset($url_parts[2])) {
             $result = $db->query("SELECT username FROM users WHERE userid='" . $db->real_escape_string($url_parts[1]) . "'");
             $slug = $result->fetch_row()[0];
@@ -57,7 +57,7 @@ function slugGenURL($args) {
         }
     }
     
-    if ($url_parts[0] == "thread") {
+    if ($url_parts[0] == "thread" && isset($url_parts[1])) {
         if (!isset($url_parts[3]) && is_numeric($url_parts[2]) || !isset($url_parts[2])) {
             $result = $db->query("SELECT title FROM threads WHERE threadid='" . $db->real_escape_string($url_parts[1]) . "'");
             $slug = $result->fetch_row()[0];
@@ -67,7 +67,7 @@ function slugGenURL($args) {
         }
     }
     
-    if ($url_parts[0] == "category") {
+    if ($url_parts[0] == "category" && isset($url_parts[1])) {
         if (!isset($url_parts[3]) && is_numeric($url_parts[2]) || !isset($url_parts[2])) {
             $result = $db->query("SELECT categoryname FROM categories WHERE categoryid='" . $db->real_escape_string($url_parts[1]) . "'");
             $slug = $result->fetch_row()[0];
