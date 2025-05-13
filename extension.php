@@ -58,7 +58,7 @@ function slugGenURL($args) {
     }
     
     if ($url_parts[0] == "thread" && isset($url_parts[1])) {
-        if (!isset($url_parts[3]) && is_numeric($url_parts[2]) || !isset($url_parts[2])) {
+        if (!isset($url_parts[3]) && (isset($url_parts[2]) && is_numeric($url_parts[2])) || !isset($url_parts[2])) {
             $result = $db->query("SELECT title FROM threads WHERE threadid='" . $db->real_escape_string($url_parts[1]) . "'");
             $slug = $result->fetch_row()[0];
             
@@ -68,7 +68,7 @@ function slugGenURL($args) {
     }
     
     if ($url_parts[0] == "category" && isset($url_parts[1])) {
-        if (!isset($url_parts[3]) && is_numeric($url_parts[2]) || !isset($url_parts[2])) {
+        if (!isset($url_parts[3]) && (isset($url_parts[2]) && is_numeric($url_parts[2])) || !isset($url_parts[2])) {
             $result = $db->query("SELECT categoryname FROM categories WHERE categoryid='" . $db->real_escape_string($url_parts[1]) . "'");
             $slug = $result->fetch_row()[0];
             
