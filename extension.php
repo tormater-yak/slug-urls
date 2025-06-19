@@ -18,7 +18,8 @@ function slugGenerator($args) {
     else if (isset($username)) $slug = $username;
     else if (isset($title)) $slug = $title;
     
-    $slug = convertSlug($slug);
+    if (isset($slug)) $slug = convertSlug($slug);
+    else $slug = "";
     
     $url_parsed = parse_url("https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
     
